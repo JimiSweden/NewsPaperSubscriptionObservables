@@ -1,25 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NewsPaperPublisherService } from '../news-paper-publisher.service';
+import { NewsPaper } from './NewsPaper.model';
 
 
-
-export class NewsPaper {
-
-  public name: string; // ex: DN
-  public edition: number; // "id"
-  public printDate: string;
-  public frontNewsHeadline: string;
-
-  constructor(name:string, edition:number, printDate:string, headline: string){
-
-    this.name = name;
-    this.edition = edition;
-
-    this.printDate = printDate;
-    this.frontNewsHeadline = headline;
-  }
-}
 
 
 

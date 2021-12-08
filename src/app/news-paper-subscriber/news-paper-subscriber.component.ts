@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NewsPaperPublisherService } from '../news-paper-publisher.service';
-import { NewsPaper } from '../news-paper-publisher/news-paper-publisher.component';
+import { NewsPaper } from "../news-paper-publisher/NewsPaper.model";
 
 @Component({
   selector: 'app-news-paper-subscriber',

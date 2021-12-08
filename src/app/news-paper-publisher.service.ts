@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { NewsPaper } from './news-paper-publisher/news-paper-publisher.component';
+import { NewsPaper } from "./news-paper-publisher/NewsPaper.model";
 
 @Injectable({
   providedIn: 'root'
