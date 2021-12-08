@@ -1,4 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { NewsPaperPublisherService } from '../news-paper-publisher.service';
+
+
+
+export class NewsPaper {
+
+  public name: string; // ex: DN
+  public edition: number; // "id"
+  public printDate: string;
+  public frontNewsHeadline: string;
+
+  constructor(name:string, edition:number, printDate:string, headline: string){
+
+    this.name = name;
+    this.edition = edition;
+
+    this.printDate = printDate;
+    this.frontNewsHeadline = headline;
+  }
+}
+
+
 
 @Component({
   selector: 'app-news-paper-publisher',
@@ -7,9 +30,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPaperPublisherComponent implements OnInit {
 
-  constructor() { }
+  /**
+   *
+   * hanterar signalering av när en ny utgåva finns tillgänglig för prenumeranterna ;
+   *
+   * @example
+   * prenumerera med .subscribe("DIN funktion här som ska agera på nästa utgåva")
+   * publicera ny utgåva genom att använda .next(newsPaper);
+   */
+  // public newEditionPublished = new Subject<NewsPaper>();
+
+
+  public allPublishedEditions: NewsPaper[] = [];
+
+  constructor(private paperService : NewsPaperPublisherService) { }
 
   ngOnInit(): void {
+
   }
+
+
+  publishNewEdition (): void {
+
+    let nextEditionNumber = this.allPublishedEditions.length +1;
+    let printDate = new Date().getDate();
+
+    let newEdition = new NewsPaper(
+      "DN",
+      nextEditionNumber,
+      printDate.toString()
+      , "Dagens huvudrubrik " + nextEditionNumber);
+
+      this.allPublishedEditions.push(newEdition);
+      this.paperService.newEditionPublished.next(newEdition);
+
+      console.log(`newEdition`, newEdition)
+  }
+
+/**
+ *
+ * newsPaperDeliveryService.newEditionPublished
+.next(newspaper);
+ *
+ */
 
 }
