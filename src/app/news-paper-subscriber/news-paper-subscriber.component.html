@@ -7,7 +7,13 @@
   </mat-card-header>
 
   <mat-card-subtitle>
-    Subscribe here
+    <span *ngIf="subscriptionIsActive">
+      Subscription is active
+    </span>
+    <span *ngIf="!subscriptionIsActive">
+      Subscription is not active
+    </span>
+
   </mat-card-subtitle>
 
   <mat-card-content>
@@ -16,10 +22,17 @@
       <span>Subscribe to newspaper</span>
     </button>
 
-
-
-
   </mat-card-content>
+
+
+
+  <h3>Alla tidningar mottagna ({{allNewsPapersReceived.length}})</h3>
+  <div *ngFor="let paper of allNewsPapersReceived">
+    <span>Tidningsnamn: {{paper.name}}</span>
+    <span>utgåva: {{paper.edition}}</span>
+    <span>Rubrik: {{paper.frontNewsHeadline}}</span>
+    <span>Datum: {{paper.printDate}}</span>
+  </div>
 
 
   <app-news-paper-subscriber-mailbox

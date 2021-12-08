@@ -18,6 +18,7 @@ export class NewsPaperSubscriberComponent implements OnInit {
 
   //TODO: ?  move to post box component
   allNewsPapersReceived: NewsPaper[] = [];
+  public subscriptionIsActive: boolean = false;
 
   constructor(private paperService: NewsPaperPublisherService) { }
 
@@ -28,6 +29,7 @@ export class NewsPaperSubscriberComponent implements OnInit {
 
   subscribeToNewsPaper(): void {
 
+    this.subscriptionIsActive = true;
 
     //TODO: move to news paper publisher service, handling the subscriptions via user.Id or  user.email/address
     this.subscription = this.paperService.newEditionPublished.subscribe(
